@@ -4,7 +4,7 @@
 console.log(3 + 3);
 console.log("Rtesh");
 
-let name = "hitesh";
+let name = "Ritesh";
 let age = 18;
 let isLoggedIn = false;
 
@@ -22,3 +22,8 @@ console.log(typeof"nitesh");        //==> String
 console.log(typeof age);           //==>number
 console.log(typeof null);         // ==> Object
 console.log(typeof undefined);   //==>undefined
+
+
+
+
+
