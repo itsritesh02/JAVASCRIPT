@@ -18,9 +18,9 @@ let BooleanIsLoggedIn  =Boolean(isloggedIn)
 
 console.log(BooleanIsLoggedIn);
 
-// 1 =>true ;0 =>false
+// 1 =>true ;0 = >false
 //" "=> false
-// "Ritesh" => true
+// "RMK" => true
 
 let someNumber= 33;
 
