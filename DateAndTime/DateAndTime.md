@@ -1,249 +1,229 @@
-# Date & Time
+// ==========================
+// Create Current Date & Time
+// ==========================
 
-## Definition
-
-The Date object is used to work with dates and time in JavaScript.
-
-It allows us to create, display, and manipulate dates and times.
-
----
-
-## Create Current Date & Time
-
-```javascript
 let date = new Date();
 
 console.log(date);
-```
 
-Output
+// Example Output
+// 2026-08-07T06:30:20.123Z
 
-```
-Fri Aug 07 2026 ...
-```
 
----
-
-## Current Date
-
-```javascript
-let date = new Date();
+// ==========================
+// Current Date
+// ==========================
 
 console.log(date.toDateString());
-```
 
-Example Output
+// Output
+// Fri Aug 07 2026
 
-```
-Fri Aug 07 2026
-```
 
----
-
-## Current Time
-
-```javascript
-let date = new Date();
+// ==========================
+// Current Time
+// ==========================
 
 console.log(date.toTimeString());
-```
 
-Example Output
+// Output
+// 11:30:45 GMT+0530 (India Standard Time)
 
-```
-11:30:45 GMT+0530
-```
 
----
-
-## Current Date & Time
-
-```javascript
-let date = new Date();
+// ==========================
+// Current Date & Time
+// ==========================
 
 console.log(date.toLocaleString());
-```
 
-Example Output
+// Output
+// 07/08/2026, 11:30:45 am
 
-```
-07/08/2026, 11:30:45 am
-```
 
----
+// ==========================
+// Current Date Only
+// ==========================
 
-## Get Year
+console.log(date.toLocaleDateString());
 
-```javascript
-let date = new Date();
+// Output
+// 07/08/2026
+
+
+// ==========================
+// Current Time Only
+// ==========================
+
+console.log(date.toLocaleTimeString());
+
+// Output
+// 11:30:45 am
+
+
+// ==========================
+// Get Full Year
+// ==========================
 
 console.log(date.getFullYear());
-```
 
-Output
+// Output
+// 2026
 
-```
-2026
-```
 
----
-
-## Get Month
-
-```javascript
-let date = new Date();
+// ==========================
+// Get Month
+// January = 0
+// February = 1
+// ...
+// December = 11
+// ==========================
 
 console.log(date.getMonth());
-```
 
-Output
+// Output
+// 7
 
-```
-7
-```
 
-Note:
-January = 0
+// Human Readable Month
 
-February = 1
+console.log(date.getMonth() + 1);
 
-...
+// Output
+// 8
 
-August = 7
 
-December = 11
-
----
-
-## Get Date
-
-```javascript
-let date = new Date();
+// ==========================
+// Get Date
+// ==========================
 
 console.log(date.getDate());
-```
 
-Output
+// Output
+// 7
 
-```
-7
-```
 
----
-
-## Get Day
-
-```javascript
-let date = new Date();
+// ==========================
+// Get Day
+// Sunday = 0
+// Monday = 1
+// ...
+// Saturday = 6
+// ==========================
 
 console.log(date.getDay());
-```
 
-Output
+// Output
+// 5
 
-```
-5
-```
 
-Days
-
-```
-0 Sunday
-1 Monday
-2 Tuesday
-3 Wednesday
-4 Thursday
-5 Friday
-6 Saturday
-```
-
----
-
-## Get Hours
-
-```javascript
-let date = new Date();
+// ==========================
+// Get Hours
+// ==========================
 
 console.log(date.getHours());
-```
 
----
+// Output
+// 11
 
-## Get Minutes
 
-```javascript
-let date = new Date();
+// ==========================
+// Get Minutes
+// ==========================
 
 console.log(date.getMinutes());
-```
 
----
+// Output
+// 30
 
-## Get Seconds
 
-```javascript
-let date = new Date();
+// ==========================
+// Get Seconds
+// ==========================
 
 console.log(date.getSeconds());
-```
 
----
+// Output
+// 45
 
-## Create Custom Date
 
-```javascript
-let date = new Date("2026-12-25");
+// ==========================
+// Get Milliseconds
+// ==========================
 
-console.log(date);
-```
+console.log(date.getMilliseconds());
 
----
+// Output
+// Example
+// 350
 
-## Interview Questions
 
-### Q1. What is Date object?
+// ==========================
+// Get Timestamp
+// ==========================
 
-The Date object is used to work with date and time.
+console.log(date.getTime());
 
----
+// Output
+// Example
+// 1786089645350
 
-### Q2. How do you get the current year?
 
-```javascript
-date.getFullYear();
-```
+// ==========================
+// Create Custom Date
+// ==========================
 
----
+let birthday = new Date("2004-05-15");
 
-### Q3. How do you get the current month?
+console.log(birthday);
 
-```javascript
-date.getMonth();
-```
+// Output
+// Sat May 15 2004
 
----
 
-### Q4. Why does getMonth() return 0 for January?
+// ==========================
+// Create Date using Numbers
+// Month starts from 0
+// ==========================
 
-Because JavaScript uses zero-based indexing for months.
+let customDate = new Date(2026, 7, 15);
 
----
+console.log(customDate);
 
-## Important Points
+// Output
+// Sat Aug 15 2026
 
-✔ new Date() creates current date and time.
 
-✔ getMonth() starts from 0.
+// ==========================
+// Create Date with Time
+// ==========================
 
-✔ getDay() returns 0–6.
+let meeting = new Date(2026, 7, 15, 10, 30, 0);
 
-✔ getDate() returns day of the month.
+console.log(meeting);
 
-✔ toLocaleString() displays readable date and time.
+// Output
+// Sat Aug 15 2026 10:30:00
 
----
 
-## Summary
+// ==========================
+// Compare Dates
+// ==========================
 
-- Use `new Date()` to create a Date object.
-- Use `getFullYear()`, `getMonth()`, `getDate()`, `getDay()`, `getHours()`, `getMinutes()`, and `getSeconds()` to get specific parts of the date.
+let d1 = new Date("2026-08-01");
+let d2 = new Date("2026-08-10");
+
+console.log(d2 > d1);
+
+// Output
+// true
+
+
+// ==========================
+// Current Timestamp
+// ==========================
+
+console.log(Date.now());
+
+// Output
+// Example
+// 1786089645350
