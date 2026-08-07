@@ -56,6 +56,7 @@ console.log("A", myArr);
 // slice(start, end)
 // End index include nahi hota
 // Original array change nahi hota
+
 const myn1 = myArr.slice(1, 3);
 
 console.log(myn1);
