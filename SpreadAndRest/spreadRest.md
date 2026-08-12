@@ -1,250 +1,107 @@
-JavaScript Spread & Rest Operators
+# JavaScript — Spread, Rest & Modules
 
-📌 Overview
+## Spread Operator
 
-JavaScript me Spread (...) aur Rest (...) operators same three dots syntax use karte hain, lekin dono ka purpose different hota hai.
+### Definition
 
-Spread → values ko expand / unpack karta hai.
+The Spread Operator `...` is used to expand or unpack values from an array or object.
 
-Rest → multiple values ko collect karta hai.
+### Easy Definition
 
-Easy Trick
+Spread = Expand / Unpack
 
-Spread → Expand
-Rest   → Collect
+### Example
 
-1. Spread Operator
+let arr = [1, 2, 3];
 
-Definition
-
-Spread operator (...) kisi iterable ke elements ya object ki properties ko expand/unpack karta hai.
-
-It is commonly used with:
-
-Arrays
-
-Objects
-
-Function arguments
-
-Strings
-
-Syntax
-
-...value
-
-2. Spread with Arrays
-
-const numbers = [1, 2, 3];
-
-const copy = [...numbers];
+let copy = [...arr];
 
 console.log(copy);
 
-Output
+### Output
 
 [1, 2, 3]
 
-Here ...numbers array ke elements ko expand karta hai.
+---
 
-Conceptually:
+## Spread with Two Arrays
 
-numbers
-[1, 2, 3]
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
 
-      ↓ Spread
-
-1, 2, 3
-
-3. Merge Two Arrays
-
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
-
-const result = [...arr1, ...arr2];
+let result = [...arr1, ...arr2];
 
 console.log(result);
 
-Output
+### Output
 
 [1, 2, 3, 4, 5, 6]
 
-Alternative
+---
 
-const result = arr1.concat(arr2);
+## Spread with Object
 
-4. Add Elements Using Spread
-
-const numbers = [2, 3, 4];
-
-const result = [1, ...numbers, 5];
-
-console.log(result);
-
-Output
-
-[1, 2, 3, 4, 5]
-
-5. Copy an Array
-
-const original = [10, 20, 30];
-
-const copy = [...original];
-
-console.log(copy);
-
-Spread creates a shallow copy of the array.
-
-Important
-
-const copy = original;
-
-This does not create a separate array. Both variables point to the same array.
-
-6. Spread with Objects
-
-Spread can copy object properties.
-
-const user = {
+let user = {
     name: "Ritesh",
     age: 22
 };
 
-const copy = {
+let copy = {
     ...user
 };
 
 console.log(copy);
 
-Output
+### Output
 
 {
     name: "Ritesh",
     age: 22
 }
 
-7. Merge Two Objects
+---
 
-const user = {
-    name: "Ritesh"
-};
+## Spread with Function
 
-const details = {
-    age: 22,
-    city: "Punjab"
-};
+let numbers = [10, 20, 30];
 
-const result = {
-    ...user,
-    ...details
-};
-
-console.log(result);
-
-Output
-
-{
-    name: "Ritesh",
-    age: 22,
-    city: "Punjab"
+function sum(a, b, c) {
+    return a + b + c;
 }
 
-8. Property Override
+console.log(sum(...numbers));
 
-If the same property exists in multiple objects, the last value wins.
+### Output
 
-const user = {
-    name: "Ritesh",
-    age: 22
-};
+60
 
-const updatedUser = {
-    ...user,
-    age: 25
-};
+---
 
-console.log(updatedUser);
+# Rest Operator
 
-Output
+## Definition
 
-{
-    name: "Ritesh",
-    age: 25
+The Rest Operator `...` is used to collect multiple values into a single array.
+
+### Easy Definition
+
+Rest = Collect / Pack
+
+### Example
+
+function test(...args) {
+    console.log(args);
 }
 
-So:
+test(10, 20, 30);
 
-22 → overwritten by → 25
-
-9. Spread with Function Arguments
-
-Spread can convert an array into individual function arguments.
-
-const numbers = [10, 20, 30];
-
-console.log(Math.max(...numbers));
-
-Output
-
-30
-
-Without spread:
-
-Math.max(10, 20, 30);
-
-Concept:
-
-[10, 20, 30]
-      ↓
-10, 20, 30
-
-10. Spread with Strings
-
-Strings are iterable, so they can be spread into an array.
-
-const name = "Ritesh";
-
-const letters = [...name];
-
-console.log(letters);
-
-Output
-
-["R", "i", "t", "e", "s", "h"]
-
-11. Rest Operator
-
-Definition
-
-Rest operator (...) multiple values ko collect karke ek single array ya remaining properties ko ek object me store karta hai.
-
-Rest is commonly used with:
-
-Function parameters
-
-Array destructuring
-
-Object destructuring
-
-12. Rest with Function Parameters
-
-function sum(...numbers) {
-    console.log(numbers);
-}
-
-sum(10, 20, 30);
-
-Output
+### Output
 
 [10, 20, 30]
 
-Here:
+---
 
-...numbers
-
-all arguments ko numbers array me collect karta hai.
-
-13. Rest Parameter with Normal Parameters
+## Rest with Normal Parameters
 
 function test(a, b, ...rest) {
     console.log(a);
@@ -254,589 +111,766 @@ function test(a, b, ...rest) {
 
 test(10, 20, 30, 40, 50);
 
-Output
+### Output
 
 10
 20
 [30, 40, 50]
 
-Explanation:
+Rest parameter must always be the last parameter.
 
-a    → 10
-b    → 20
-rest → [30, 40, 50]
+---
 
-Important Rule
+## Rest with Sum
 
-Rest parameter last parameter hona chahiye.
+function sum(...numbers) {
+
+    let total = 0;
+
+    for (let num of numbers) {
+        total += num;
+    }
+
+    return total;
+}
+
+console.log(sum(10, 20, 30));
+
+### Output
+
+60
+
+---
+
+## Rest with Array Destructuring
+
+let numbers = [10, 20, 30, 40, 50];
+
+let [first, ...rest] = numbers;
+
+console.log(first);
+console.log(rest);
+
+### Output
+
+10
+[20, 30, 40, 50]
+
+---
+
+## Rest with Object Destructuring
+
+let user = {
+    name: "Ritesh",
+    age: 22,
+    city: "Rajpura"
+};
+
+let { name, ...details } = user;
+
+console.log(name);
+console.log(details);
+
+### Output
+
+Ritesh
+
+{
+    age: 22,
+    city: "Rajpura"
+}
+
+---
+
+# Spread vs Rest
+
+| Spread | Rest |
+|---|---|
+| Expands values | Collects values |
+| Unpacks values | Packs values |
+| Used while passing values | Used while receiving values |
+| Commonly used with arrays and objects | Commonly used with functions and destructuring |
+
+### Easy Trick
+
+Spread → Expand
+
+Rest → Collect
+
+---
+
+# Shallow Copy
+
+Spread creates a shallow copy, not a deep copy.
+
+let user = {
+    name: "Ritesh",
+    address: {
+        city: "Rajpura"
+    }
+};
+
+let copy = {
+    ...user
+};
+
+copy.address.city = "Delhi";
+
+console.log(user.address.city);
+
+### Output
+
+Delhi
+
+The reason is that nested objects can still share the same reference.
+
+---
+
+# Interview Questions — Spread & Rest
+
+## Q1. What is Spread Operator?
+
+### Answer
+
+Spread Operator `...` is used to expand or unpack elements of an array or properties of an object.
+
+---
+
+## Q2. What is Rest Operator?
+
+### Answer
+
+Rest Operator `...` is used to collect multiple values into a single array.
+
+---
+
+## Q3. Difference between Spread and Rest?
+
+### Answer
+
+Spread expands values, while Rest collects values.
+
+Spread → Expand
+
+Rest → Collect
+
+---
+
+## Q4. Can Spread be used with Objects?
+
+### Answer
+
+Yes.
+
+let user = {
+    name: "Ritesh",
+    age: 22
+};
+
+let copy = {
+    ...user
+};
+
+---
+
+## Q5. Can Rest be used in Functions?
+
+### Answer
+
+Yes.
+
+function test(...args) {
+    console.log(args);
+}
+
+---
+
+## Q6. Can Rest Parameter be placed in the middle?
+
+### Answer
+
+No.
+
+Rest parameter must be the last parameter.
 
 Correct:
 
 function test(a, b, ...rest) {
 }
 
-Incorrect:
+Wrong:
 
-function test(...rest, a, b) {
+function test(...rest, a) {
 }
 
-14. Rest with Array Destructuring
+---
 
-const numbers = [10, 20, 30, 40];
+## Q7. Does Spread create a Deep Copy?
 
-const [first, ...rest] = numbers;
+### Answer
 
-console.log(first);
-console.log(rest);
+No.
 
-Output
+Spread creates a shallow copy.
 
-10
-[20, 30, 40]
+---
 
-Explanation:
+## Q8. Why is Spread used in React?
 
-first → 10
-rest  → [20, 30, 40]
+### Answer
 
-Rest remaining elements ko collect karta hai.
+Spread is commonly used to copy existing state and update specific properties without directly modifying the original object.
 
-15. Rest with Object Destructuring
+Example:
 
-const user = {
-    name: "Ritesh",
-    age: 22,
-    city: "Punjab"
-};
+setUser({
+    ...user,
+    age: 23
+});
 
-const { name, ...details } = user;
+---
 
-console.log(name);
-console.log(details);
+# JavaScript Modules
 
-Output
+## Definition
 
-Ritesh
+Modules allow us to divide JavaScript code into multiple files.
 
-{
-    age: 22,
-    city: "Punjab"
+Instead of writing the complete application in one file, we can create separate files for different functionality.
+
+Example:
+
+project
+│
+├── app.js
+├── user.js
+├── product.js
+└── utils.js
+
+---
+
+# Why Do We Use Modules?
+
+Modules help us to:
+
+- Organize code
+- Reuse code
+- Maintain large applications
+- Separate functionality
+- Avoid unnecessary global variables
+- Make code easier to understand
+
+---
+
+# Types of JavaScript Modules
+
+There are mainly two module systems:
+
+1. ES Modules
+2. CommonJS Modules
+
+---
+
+# ES Modules
+
+ES Modules use:
+
+import
+export
+
+---
+
+# Named Export
+
+math.js
+
+export function add(a, b) {
+    return a + b;
 }
+
+app.js
+
+import { add } from "./math.js";
+
+console.log(add(10, 20));
+
+### Output
+
+30
+
+---
+
+# Multiple Named Exports
+
+math.js
+
+export const pi = 3.14;
+
+export function add(a, b) {
+    return a + b;
+}
+
+export function subtract(a, b) {
+    return a - b;
+}
+
+Import:
+
+import { pi, add, subtract } from "./math.js";
+
+console.log(pi);
+console.log(add(10, 20));
+console.log(subtract(20, 10));
+
+---
+
+# Default Export
+
+A module can have only one default export.
+
+user.js
+
+export default function getUser() {
+    return "User Data";
+}
+
+Import:
+
+import getUser from "./user.js";
+
+console.log(getUser());
+
+Default import does not require curly braces.
+
+---
+
+# Named Export vs Default Export
+
+## Named Export
+
+export function add(a, b) {
+    return a + b;
+}
+
+Import:
+
+import { add } from "./math.js";
+
+## Default Export
+
+export default function add(a, b) {
+    return a + b;
+}
+
+Import:
+
+import add from "./math.js";
+
+---
+
+# Rename Import
+
+We can rename an imported value using `as`.
+
+import { add as sum } from "./math.js";
+
+console.log(sum(10, 20));
 
 Here:
 
-name    → "Ritesh"
-details → { age: 22, city: "Punjab" }
+add → Original name
 
-16. Spread vs Rest
+sum → New name
 
-Feature
+---
 
-Spread
+# Import Everything
 
-Rest
+We can import everything from a module using `*`.
 
-Syntax
+import * as math from "./math.js";
 
-...
+console.log(math.add(10, 20));
+console.log(math.pi);
 
-...
+Here `math` is a namespace object.
 
-Meaning
+---
 
-Expand
+# CommonJS Modules
 
-Collect
+CommonJS is commonly used in Node.js applications.
 
-Array
+CommonJS uses:
 
-Unpacks elements
+require()
+module.exports
 
-Collects remaining elements
+---
 
-Object
+# CommonJS Export
 
-Copies/merges properties
+math.js
 
-Collects remaining properties
-
-Function
-
-Passes array values as arguments
-
-Collects arguments into array
-
-Example
-
-fn(...arr)
-
-function fn(...args)
-
-Remember
-
-Spread → Expand
-Rest   → Collect
-
-17. Spread in React ⭐⭐⭐⭐⭐
-
-Spread is heavily used in React for immutable state updates.
-
-Example:
-
-const [user, setUser] = useState({
-    name: "Ritesh",
-    age: 22
-});
-
-Update only age:
-
-setUser({
-    ...user,
-    age: 23
-});
-
-The existing properties are copied and age is updated.
-
-18. Spread with React Arrays
-
-const [users, setUsers] = useState([
-    "Ritesh",
-    "Rahul"
-]);
-
-Add a new user:
-
-setUsers([
-    ...users,
-    "Aman"
-]);
-
-Result:
-
-["Ritesh", "Rahul", "Aman"]
-
-19. Rest in MERN / Express
-
-Rest can be used to remove sensitive fields from an object.
-
-const user = {
-    name: "Ritesh",
-    email: "ritesh@gmail.com",
-    password: "secret123"
-};
-
-const { password, ...safeUser } = user;
-
-console.log(safeUser);
-
-Output
-
-{
-    name: "Ritesh",
-    email: "ritesh@gmail.com"
+function add(a, b) {
+    return a + b;
 }
 
-This pattern is useful when preparing safe API responses.
+module.exports = add;
 
-20. API Response Example
+Import:
 
-const { password, ...userData } = user;
+app.js
 
-res.json(userData);
+const add = require("./math");
 
-Now password is not included in the response object.
+console.log(add(10, 20));
 
-Note: In real applications, sensitive data should ideally not be selected from the database or should be excluded at the data-access layer where appropriate. This example demonstrates the JavaScript pattern.
+### Output
 
-21. Shallow Copy ⭐⭐⭐⭐⭐
+30
 
-Spread creates a shallow copy.
+---
 
-Example:
+# CommonJS Multiple Exports
 
-const user = {
-    name: "Ritesh",
-    address: {
-        city: "Punjab"
-    }
-};
+math.js
 
-const copy = {
-    ...user
-};
-
-The top-level object is copied, but nested objects can still share references.
-
-copy.address.city = "Delhi";
-
-console.log(user.address.city);
-
-Output
-
-Delhi
-
-Why?
-
-user.address
-      ↓
-same nested object
-      ↑
-copy.address
-
-22. Spread vs Object.assign()
-
-Both can copy/merge objects.
-
-Spread
-
-const result = {
-    ...obj1,
-    ...obj2
-};
-
-Object.assign()
-
-const result = Object.assign(
-    {},
-    obj1,
-    obj2
-);
-
-Spread syntax is generally concise and easy to read.
-
-23. Rest vs Arguments Object
-
-Old style
-
-function sum() {
-    console.log(arguments);
+function add(a, b) {
+    return a + b;
 }
 
-Rest parameter
-
-function sum(...numbers) {
-    console.log(numbers);
+function subtract(a, b) {
+    return a - b;
 }
 
-Rest parameters are cleaner and give you a real array.
+module.exports = {
+    add,
+    subtract
+};
 
-24. Important Output Questions
+Import:
 
-Question 1
+const { add, subtract } = require("./math");
 
-const a = [1, 2, 3];
+console.log(add(10, 20));
+console.log(subtract(20, 10));
 
-const b = [...a];
+### Output
 
-console.log(b);
-
-Answer
-
-[1, 2, 3]
-
-Question 2
-
-const a = [1, 2];
-const b = [3, 4];
-
-console.log([...a, ...b]);
-
-Answer
-
-[1, 2, 3, 4]
-
-Question 3
-
-function test(...args) {
-    console.log(args);
-}
-
-test(1, 2, 3, 4);
-
-Answer
-
-[1, 2, 3, 4]
-
-Question 4
-
-const numbers = [10, 20, 30, 40];
-
-const [a, ...b] = numbers;
-
-console.log(a);
-console.log(b);
-
-Answer
-
+30
 10
-[20, 30, 40]
 
-Question 5
+---
 
-const user = {
-    name: "Ritesh",
-    age: 22,
-    city: "Punjab"
-};
+# ES Modules vs CommonJS
 
-const { name, ...rest } = user;
+| ES Modules | CommonJS |
+|---|---|
+| import | require() |
+| export | module.exports |
+| Modern JavaScript | Traditional Node.js module system |
+| Supports default export | Uses module.exports |
+| Supports named exports | Commonly exports objects |
 
-console.log(name);
-console.log(rest);
+---
 
-Answer
+# MERN Example
 
-Ritesh
-{
-    age: 22,
-    city: "Punjab"
+ES Modules:
+
+import express from "express";
+import dotenv from "dotenv";
+
+const app = express();
+
+export default app;
+
+CommonJS:
+
+const express = require("express");
+
+const app = express();
+
+module.exports = app;
+
+Important:
+
+Do not randomly mix ES Modules and CommonJS syntax.
+
+---
+
+# Interview Questions — Modules
+
+## Q1. What is a JavaScript Module?
+
+### Answer
+
+A module is a separate JavaScript file that contains reusable code such as functions, variables, classes, or objects.
+
+---
+
+## Q2. Why are Modules used?
+
+### Answer
+
+Modules are used to:
+
+- Organize code
+- Reuse code
+- Maintain large applications
+- Separate functionality
+- Avoid unnecessary global variables
+
+---
+
+## Q3. What is ES Module?
+
+### Answer
+
+ES Module is the modern JavaScript module system that uses `import` and `export`.
+
+---
+
+## Q4. What is CommonJS?
+
+### Answer
+
+CommonJS is a module system commonly used in Node.js.
+
+It uses:
+
+require()
+module.exports
+
+---
+
+## Q5. Difference between Named Export and Default Export?
+
+### Answer
+
+Named exports can export multiple values from a module.
+
+export const name = "Ritesh";
+export const age = 22;
+
+Import:
+
+import { name, age } from "./user.js";
+
+Default export is generally used for one main value.
+
+export default function user() {
 }
 
-Question 6
+Import:
 
-const user = {
-    name: "Ritesh",
-    age: 22
-};
+import user from "./user.js";
 
-const updated = {
-    ...user,
-    age: 25
-};
+---
 
-console.log(updated.age);
+## Q6. Can a file have multiple default exports?
 
-Answer
+### Answer
 
-25
+No.
 
-Question 7
+A module can have only one default export.
 
-function sum(...nums) {
-    return nums.reduce((acc, num) => acc + num, 0);
+But it can have multiple named exports.
+
+---
+
+## Q7. Can a file have multiple named exports?
+
+### Answer
+
+Yes.
+
+export const name = "Ritesh";
+export const age = 22;
+
+export function greet() {
 }
 
-console.log(sum(1, 2, 3, 4));
+---
 
-Answer
+## Q8. What is require()?
+
+### Answer
+
+require() is used in CommonJS to import modules.
+
+const express = require("express");
+
+---
+
+## Q9. What is module.exports?
+
+### Answer
+
+module.exports is used in CommonJS to export values from a module.
+
+module.exports = add;
+
+---
+
+## Q10. Difference between export default and module.exports?
+
+### Answer
+
+`export default` belongs to the ES Module system, while `module.exports` belongs to the CommonJS module system.
+
+---
+
+# Output Based Interview Questions
+
+## Question 1
+
+math.js
+
+export const x = 10;
+
+app.js
+
+import { x } from "./math.js";
+
+console.log(x);
+
+### Answer
 
 10
 
-25. Common Interview Mistakes
+---
 
-Mistake 1: Thinking Spread and Rest are different syntax
+## Question 2
 
-Both use:
+math.js
 
-...
-
-Their context and purpose determine whether it is spread or rest.
-
-Mistake 2: Putting Rest before another parameter
-
-Wrong:
-
-function test(...args, name) {}
-
-Correct:
-
-function test(name, ...args) {}
-
-Mistake 3: Thinking Spread creates a deep copy
-
-Spread creates a shallow copy.
-
-const copy = { ...user };
-
-Nested objects may still share references.
-
-Mistake 4: Confusing Spread with Rest
-
-fn(...arr);
-
-This is Spread because values are expanded.
-
-function fn(...args) {}
-
-This is Rest because values are collected.
-
-26. Interview Questions
-
-Basic
-
-What is the spread operator?
-
-What is the rest operator?
-
-Why do both use ...?
-
-What is the difference between spread and rest?
-
-Where can spread be used?
-
-Where can rest be used?
-
-Arrays
-
-How do you copy an array using spread?
-
-How do you merge two arrays?
-
-How do you add an element using spread?
-
-How can you pass array elements as function arguments?
-
-Objects
-
-How do you copy an object?
-
-How do you merge two objects?
-
-How do you update one object property using spread?
-
-What happens when duplicate properties exist?
-
-What is a shallow copy?
-
-Rest
-
-What is a rest parameter?
-
-Why must the rest parameter be last?
-
-How do you use rest with array destructuring?
-
-How do you use rest with object destructuring?
-
-What is the difference between rest and arguments?
-
-React / MERN
-
-How is spread used in React state?
-
-How do you add an item to a React state array?
-
-How can rest be used to exclude a property?
-
-How can spread be used to merge API data?
-
-Why is immutable updating important in React?
-
-27. Interview-Ready Answers
-
-Q1. What is Spread Operator?
-
-Answer:
-
-The spread operator uses three dots (...) to expand or unpack elements of an iterable or properties of an object. It is commonly used for copying, merging, and updating arrays and objects.
-
-Q2. What is Rest Operator?
-
-Answer:
-
-The rest parameter uses three dots (...) to collect multiple values into a single array. It is commonly used in function parameters and destructuring.
-
-Q3. Difference Between Spread and Rest?
-
-Answer:
-
-Both use the same three-dot syntax, but spread expands values while rest collects values.
-
-Example:
-
-// Spread
-const arr = [1, 2, 3];
-console.log(...arr);
-
-// Rest
-function test(...args) {
-    console.log(args);
+export default function add(a, b) {
+    return a + b;
 }
 
-Q4. What is Shallow Copy?
+app.js
 
-Answer:
+import add from "./math.js";
 
-A shallow copy creates a new top-level array or object, but nested objects can still share the same references.
+console.log(add(10, 20));
 
-Q5. Why is Spread Used in React?
+### Answer
 
-Answer:
+30
 
-Spread is commonly used to create a new array or object while preserving existing values, which helps us perform immutable state updates.
+---
 
-Example:
+## Question 3
 
-setUser({
-    ...user,
-    age: 23
-});
+math.js
 
-28. Quick Revision
-
-Spread
-
-const copy = [...arr];
-
-Expand / Copy
-
-Array Merge
-
-const result = [...a, ...b];
-
-Object Copy
-
-const copy = { ...user };
-
-Object Update
-
-const updated = {
-    ...user,
-    age: 25
-};
-
-Function Spread
-
-Math.max(...numbers);
-
-Rest Parameter
-
-function test(...args) {
-    console.log(args);
+function add(a, b) {
+    return a + b;
 }
 
-Array Rest
+module.exports = add;
 
-const [first, ...rest] = numbers;
+app.js
 
-Object Rest
+const add = require("./math");
 
-const { password, ...safeUser } = user;
+console.log(add(5, 5));
 
-⭐ One-Line Revision
+### Answer
 
-Spread expands/unpacks values, while Rest collects multiple values into one variable.
+10
 
-🎯 Interview Priority
+---
 
-Focus especially on:
+# Important Points
 
-Spread vs Rest
+- Spread and Rest both use `...`.
+- Spread means Expand.
+- Rest means Collect.
+- Spread can work with arrays and objects.
+- Spread can be used in function calls.
+- Rest can be used in function parameters.
+- Rest can be used in destructuring.
+- Rest parameter must be the last parameter.
+- Spread creates a shallow copy.
+- Modules allow us to split code into multiple files.
+- ES Modules use `import` and `export`.
+- CommonJS uses `require()` and `module.exports`.
+- One module can have only one default export.
+- A module can have multiple named exports.
+- Do not randomly mix ES Module and CommonJS syntax.
 
-Array/Object copying
+---
 
-Array/Object merging
+# Quick Revision
 
-Property overriding
+Spread → Expand / Unpack
 
-Rest parameters
+Rest → Collect / Pack
 
-Destructuring with Rest
+ES Module → import / export
 
-Shallow copy
+CommonJS → require() / module.exports
 
-React state updates
+---
 
-MERN/API use cases
+# Most Important Interview Answers
 
-Output-based questions
+## Spread
+
+Spread Operator is used to expand or unpack values from an array or object.
+
+## Rest
+
+Rest Operator is used to collect multiple values into a single array.
+
+## Difference
+
+Spread expands values, while Rest collects values.
+
+## Module
+
+A JavaScript Module is a separate file containing reusable code.
+
+## ES Module
+
+ES Modules use `import` and `export`.
+
+## CommonJS
+
+CommonJS uses `require()` and `module.exports`.
+
+## Named Export
+
+Named exports allow multiple values to be exported from a module.
+
+## Default Export
+
+A module can have only one default export.
+
+## Shallow Copy
+
+Spread creates a shallow copy, so nested objects can still share references.
+
+---
+
+# Interview Tip
+
+If interviewer asks:
+
+"What is the difference between Spread and Rest?"
+
+Answer:
+
+Both use the same three-dot syntax `...`, but Spread is used to expand or unpack values, while Rest is used to collect multiple values into an array.
+
+If interviewer asks:
+
+"What are JavaScript Modules?"
+
+Answer:
+
+Modules allow us to split JavaScript code into separate reusable files. Modern JavaScript commonly uses ES Modules with `import` and `export`, while CommonJS uses `require()` and `module.exports`.
