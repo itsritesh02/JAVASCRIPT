@@ -1,25 +1,19 @@
-# JavaScript Destructuring
+## 28. Destructuring in JavaScript
 
-## Definition
+### What is Destructuring?
 
-Destructuring is a JavaScript feature used to extract values from arrays or properties from objects and store them in separate variables.
+**Destructuring** is a JavaScript feature used to take values from an **array or object** and store them in separate variables.
 
-### Easy Definition
-
-Destructuring = Extract values easily
+It makes code shorter and easier to read.
 
 ---
 
-# Array Destructuring
+### Example 1: Array Destructuring
 
-Array destructuring is used to extract values from an array.
+```js
+const numbers = [10, 20, 30];
 
-### Example
-
-```javascript
-let numbers = [10, 20, 30];
-
-let [a, b, c] = numbers;
+const [a, b, c] = numbers;
 
 console.log(a);
 console.log(b);

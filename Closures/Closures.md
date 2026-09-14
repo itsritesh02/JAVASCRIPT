@@ -1,4 +1,5 @@
-# Advanced JavaScript Interview Questions
+
+
 
 ## 1. Closure
 
