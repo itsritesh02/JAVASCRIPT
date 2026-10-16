@@ -1,38 +1,14 @@
-## 29. DOM (Document Object Model)
 
-### What is DOM?
+### What is DOM in JavaScript?
 
-DOM stands for **Document Object Model**.
+**Answer:**
 
-When the browser loads an HTML page, it converts the HTML into a **tree-like structure** called the DOM.
+DOM stands for **Document Object Model**. It allows JavaScript to access and change HTML elements on a web page.
 
-JavaScript uses the DOM to interact with HTML.
+**Example:** JavaScript can change text, styles, or HTML elements using the DOM.
 
-For example, JavaScript can:
+```javascript
+document.getElementById("heading").innerText = "Hello World";
+```
 
-- Select an HTML element
-- Change text
-- Change CSS
-- Handle button clicks
-- Create new elements
-- Remove elements
-
----
-
-### Example 1: Select Element
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1 id="title">Hello</h1>
-
-<script>
-  const heading = document.getElementById("title");
-
-  console.log(heading);
-</script>
-
-</body>
-</html>
+Here, JavaScript finds the HTML element with the ID `heading` and changes its text to `Hello World`.
