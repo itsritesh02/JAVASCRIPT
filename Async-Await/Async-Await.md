@@ -6,16 +6,18 @@
 
 In simple words:
 
-> It makes asynchronous code look and behave more like normal synchronous code.
+`async/await` is used to handle asynchronous operations in JavaScript. It makes asynchronous code easier to read and write.
 
 ---
 
 
-- `async` allows a function to work with asynchronous operations.
-- `await` waits for a Promise to settle before continuing.
+- `async` makes a function return a Promise.
+- `await` waits for a Promise to resolve before moving to the next line inside the async function.
 - `try...catch` is used to handle errors.
 - `finally` runs whether an error occurs or not, so it is useful for stopping the loading state.
 
+
+**Interview Point:** We commonly use `async/await` when fetching API data or working with databases in MERN applications.
 
 ### Example: API Call
 
