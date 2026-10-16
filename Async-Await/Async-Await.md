@@ -10,6 +10,13 @@ In simple words:
 
 ---
 
+
+- `async` allows a function to work with asynchronous operations.
+- `await` waits for a Promise to settle before continuing.
+- `try...catch` is used to handle errors.
+- `finally` runs whether an error occurs or not, so it is useful for stopping the loading state.
+
+
 ### Example: API Call
 
 ```js

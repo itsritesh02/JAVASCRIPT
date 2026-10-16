@@ -1,60 +1,75 @@
-# JavaScript Modules
 
-## Definition
+# JavaScript Modules: import and export
 
-Modules allow us to divide JavaScript code into multiple files.
+## What are JavaScript Modules?
 
-Instead of writing the complete application in one file, we can create separate files for different functionality.
+JavaScript modules allow us to write code in separate files and use that code in other files.
 
-Example:
+## 1. Export
 
-project
-│
-├── app.js
-├── user.js
-├── product.js
-└── utils.js
+`export` is used to share a function or variable with another file.
 
----
-
-# Why Do We Use Modules?
-
-Modules help us to:
-
-- Organize code
-- Reuse code
-- Maintain large applications
-- Separate functionality
-- Avoid unnecessary global variables
-- Make code easier to understand
-
----
-
-# Types of JavaScript Modules
-
-There are mainly two module systems:
-
-1. ES Modules
-2. CommonJS Modules
-
----
-
-# ES Modules
-
-ES Modules use:
-
-- `import`
-- `export`
-
----
-
-# Named Export
-
-A Named Export allows us to export specific variables or functions.
-
-### math.js
-
+**math.js**
 ```javascript
-export function add(a, b) {
-    return a + b;
+export const add = (a, b) => {
+  return a + b;
+};
+```
+
+## 2. Import
+
+`import` is used to use the exported function or variable in another file.
+
+**app.js**
+```javascript
+import { add } from "./math.js";
+
+console.log(add(10, 20));
+```
+
+Output:
+```text
+30
+```
+
+## 3. Default Export
+
+We can also use `export default` to export one main value from a file.
+
+**greet.js**
+```javascript
+function greet() {
+  console.log("Hello Ritesh");
 }
+
+export default greet;
+```
+
+**app.js**
+```javascript
+import greet from "./greet.js";
+
+greet();
+```
+
+Output:
+```text
+Hello Ritesh
+```
+
+## Difference Between import and export
+
+| export | import |
+|---|---|
+| Shares code from a file. | Uses code from another file. |
+| Makes functions or variables available. | Accesses exported functions or variables. |
+
+## Interview Answer
+
+JavaScript modules help us organize code into separate files.
+
+`export` is used to share code, and `import` is used to access that code in another file.
+
+**Remember:**
+- Export = Send
+- Import = Receive
